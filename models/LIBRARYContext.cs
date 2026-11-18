@@ -34,12 +34,12 @@ namespace LibraryWithSql_PO.models
             }
         }
 
-        protected override void OnModelCreating(ModelCreatingBuilder modelBuilder)
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Hebrew_CI_AS");
 
             // הגדרות עבור טבלת Books
-            modelbuilder.Entity<book>(entity =>
+            modelBuilder.Entity<Book>(entity =>
             {
                 entity.HasKey(e => e.BookID);
 
@@ -57,7 +57,7 @@ namespace LibraryWithSql_PO.models
             });
 
             // הגדרות עבור טבלת Users
-            modelbuilder.Entity<user>(entity =>
+            modelBuilder.Entity<User>(entity =>
             {
                 entity.HasKey(e => e.UserID);
 
@@ -72,7 +72,7 @@ namespace LibraryWithSql_PO.models
             });
 
             // הגדרות עבור טבלת Categories
-            modelbuilder.Entity<category>(entity =>
+            modelBuilder.Entity<Category>(entity =>
             {
                 entity.HasKey(e => e.CategoryID);
                 entity.Property(e => e.CategoryName).IsRequired().HasMaxLength(100);
@@ -81,7 +81,7 @@ namespace LibraryWithSql_PO.models
             });
 
             // הגדרות עבור טבלת Loans
-            modelbuilder.Entity<loan>(entity =>
+            modelBuilder.Entity<Loan>(entity =>
             {
                 entity.HasKey(e => e.LoanID);
                 entity.Property(e => e.Status).IsRequired().HasMaxLength(20).HasDefaultValueSql("'Active'");
@@ -104,6 +104,6 @@ namespace LibraryWithSql_PO.models
             OnModelCreatingPartial(modelBuilder);
         }
 
-        partial void OnModelCreatingPartial(ModelCreatingBuilder modelBuilder);
+        partial void OnModelCreatingPartial(ModelBuilder modelBuilder);
     }
 }
